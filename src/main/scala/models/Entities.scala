@@ -1,7 +1,5 @@
-package cl.uchile.dcc
-package entitites
+package models
 
-// Traits
 trait Character:
   val name: String
   var hp: Int
