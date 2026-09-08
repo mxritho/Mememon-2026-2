@@ -12,3 +12,4 @@ class Thunder extends Action("Thunder")
 class Meteor extends Action("Meteor")
 class Healing extends Action("Healing")
 class Purification extends Action("Purification")
+
