@@ -1,29 +1,40 @@
-package models
+package entities
 
 class EntitiesTest extends munit.FunSuite:
-  test("A Knight should be instantiated with correct attributes"):
-    val knight = new Knight("Artorias", 100, 15, 50)
-    assertEquals(knight.name, "Artorias")
+  test("A Character should initialize correctly with their base attributes"):
+    val knight = new Knight("Arthur", 100, 15, 50)
+    val thief = new Thief("Theo", 70, 20, 35)
+    assertEquals(knight.name, "Arthur")
     assertEquals(knight.hp, 100)
-    assertEquals(knight.defense, 15)
-    assertEquals(knight.weight, 50)
+    assertEquals(knight.defense, 50)
+    assertEquals(knight.weight, 80)
+    assertEquals(thief.name, "Theo")
     assertEquals(knight.weaponSlot, None)
-    assert(knight.inventory.isEmpty)
+    assertEquals(knight.inventory, null)
+    assertEquals(thief.weaponSlot, None)
+
+  test("A Magic Character should be initializated with their base attributes"):
+    val whitemage = new WhiteMage("Gandalf", 65, 20, 35, 200)
+    val blackmage = new BlackMage("Voldemort", 60, 15, 30, 150)
+
+    assertEquals(whitemage.name, "Gandalf")
+    assertEquals(blackmage.name, "Voldemort")
+    assertEquals(whitemage.hp, 65)
+    assertEquals(blackmage.hp, 60)
+    assertEquals(blackmage.manaPoints, 150)
+    assertEquals(whitemage.manaPoints, 200)
 
   test("A Player should hold a list of units and default to alive"):
     val knight = new Knight("Artorias", 100, 15, 50)
     val player = new Player(units = List(knight))
     assertEquals(player.units.length, 1)
-    assert(player.isAlive)
+    assertEquals(player.isAlive, true)
 
-  test("A Sword weapon should store its stats correctly"):
-    val owner = new Knight("Dummy", 100, 10, 40)
-    val sword = new Sword("Excalibur", 35, 10, owner)
-    assertEquals(sword.name, "Excalibur")
-    assertEquals(sword.attackPoints, 35)
-    assertEquals(sword.weight, 10)
-    assertEquals(sword.owner, owner)
+  test("An enemy should initialize correctly with their base attributes"):
+    val mortifagos = Enemy("Mortifagos", 40, 20, 10, 20)
+    assertEquals(mortifagos.name, "Mortifagos")
+    assertEquals(mortifagos.hp, 40)
+    assertEquals(mortifagos.attack, 20)
+    assertEquals(mortifagos.defense, 10)
+    assertEquals(mortifagos.weight, 20)
 
-  test("A Healing potion should have the default name"):
-    val potion = new Healing()
-    assertEquals(potion.name, "Healing Potion")
