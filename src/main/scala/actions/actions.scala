@@ -1,7 +1,6 @@
 package actions
-import models.Weapon
-import models.Potion
-
+import items.Weapon
+import items.Potion
 abstract class Action(val name: String)
 
 class Attack extends Action("Attack")
