@@ -7,11 +7,10 @@ class EntitiesTest extends munit.FunSuite:
     val thief = new Thief("Theo", 70, 20, 35)
     assertEquals(knight.name, "Arthur")
     assertEquals(knight.hp, 100)
-    assertEquals(knight.defense, 50)
-    assertEquals(knight.weight, 80)
+    assertEquals(knight.defense, 15)
+    assertEquals(knight.weight, 50)
     assertEquals(thief.name, "Theo")
     assertEquals(knight.weaponSlot, None)
-    assertEquals(knight.inventory, null)
     assertEquals(thief.weaponSlot, None)
 
   test("A Magic Character should be initializated with their base attributes"):
@@ -27,7 +26,7 @@ class EntitiesTest extends munit.FunSuite:
 
   test("A Player should hold a list of units and default to alive"):
     val knight = new Knight("Artorias", 100, 15, 50)
-    val player = new Player(units = List(knight))
+    val player = new Player(List(knight))
     assertEquals(player.units.length, 1)
     assertEquals(player.isAlive, true)
 

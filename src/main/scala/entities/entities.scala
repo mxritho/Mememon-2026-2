@@ -4,14 +4,19 @@ import items.{Weapon, Potion}
 
 trait Units:
   val name: String
-  var hp: Int
-  var defense: Int
-  var weight: Int
+  val weight: Int
+  
+  def defense: Int
+  def hp: Int
   def actionBar: Double
-
-abstract class Character(val name: String, var hp: Int, var defense: Int, var weight: Int) extends Units:
-  var weaponSlot: Option[Weapon] = None
-  var inventory: List[Potion] = List()
+  
+abstract class Character(val name: String, private var _hp: Int, private var  _defense: Int, val weight: Int) extends Units:
+  private var _weaponSlot: Option[Weapon] = None
+  private var _inventory: List[Potion] = List()
+  def hp: Int = _hp
+  def defense: Int = _defense
+  def weaponSlot: Option[Weapon] = _weaponSlot
+  def inventory: List[Potion] = _inventory
   override def actionBar: Double =
     var weaponWeight = 0
     if (weaponSlot.isDefined) {
@@ -20,8 +25,9 @@ abstract class Character(val name: String, var hp: Int, var defense: Int, var we
     weight + 0.5 * weaponWeight
 
 
-abstract class MagicCharacter(name: String, hp: Int, defense: Int, weight: Int, var manaPoints: Int) extends
-  Character(name, hp, defense, weight)
+abstract class MagicCharacter(name: String, hp: Int, defense: Int, weight: Int, private var _manaPoints: Int) extends
+  Character(name, hp, defense, weight):
+  def manaPoints: Int = _manaPoints
 
 class Knight(name: String, hp: Int, defense: Int, weight: Int) extends Character(name, hp, defense, weight)
 class Archer(name: String, hp: Int, defense: Int, weight: Int) extends Character(name, hp, defense, weight)
@@ -29,8 +35,11 @@ class Thief(name: String, hp: Int, defense: Int, weight: Int) extends Character(
 class BlackMage(name: String, hp: Int, defense: Int, weight: Int, manaPoints: Int) extends MagicCharacter(name, hp, defense, weight, manaPoints)
 class WhiteMage(name: String, hp: Int, defense: Int, weight: Int, manaPoints: Int) extends MagicCharacter(name, hp, defense, weight, manaPoints)
 
-class Enemy(val name: String, var hp: Int, var attack: Int, var defense: Int, var weight: Int) extends Units:
+class Enemy(val name: String, private var _hp: Int, val attack: Int, val defense: Int, val weight: Int) extends Units:
+  def hp: Int = _hp
   override def actionBar: Double =
     weight.toDouble
-class Player(var units: List[Character] = List(), var isAlive: Boolean = true)
+class Player(private var _units: List[Units] = List()):
+  def units: List[Units] = _units
+  def isAlive: Boolean = _units.exists(_.hp > 0)
 
