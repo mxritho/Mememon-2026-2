@@ -47,10 +47,12 @@ class TurnScheduler:
     }(Ordering[Double].reverse)
     sortedList
   }
-  
-  
-  
-  
+
+  def getTurn(): Option[Units] =
+    readyInOrder().headOption
+
+
+
 
 
 

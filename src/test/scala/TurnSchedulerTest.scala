@@ -58,3 +58,9 @@ class TurnSchedulerTest extends munit.FunSuite:
     assertEquals(sortedList(0),globin)
     assertEquals(sortedList(1),knight)
 
+  test("getTurn should return the unit first in the list"):
+    assertEquals(scheduler.getTurn(), None)
+    scheduler.addUnit(knight)
+    scheduler.addUnit(globin)
+    scheduler.increaseAllActionBars(100)
+    assertEquals(scheduler.getTurn(),Some(globin))
