@@ -1,7 +1,7 @@
 package cl.uchile.dcc
 import entities._
 
-class turnSchedulerTest extends munit.FunSuite:
+class TurnSchedulerTest extends munit.FunSuite:
   var scheduler: TurnScheduler = null
   var knight: Knight = null
   var globin: Enemy = null
@@ -28,5 +28,33 @@ class turnSchedulerTest extends munit.FunSuite:
     val currentUnits = scheduler.calculateMaxActionBar()
     assertEquals(currentUnits.size,1)
 
+  test("calculateMaxActionBar should return the correct stat for max bar"):
+    scheduler.addUnit(knight)
+    scheduler.addUnit(globin)
+    val newCurrentUnits = scheduler.calculateMaxActionBar()
+    assertEquals(newCurrentUnits(knight), 90.0)
+    assertEquals(newCurrentUnits(globin), 30.0)
 
+  test("resetActionBar should set the unit action bar to zero"):
+    scheduler.addUnit(knight)
+    scheduler.increaseAllActionBars(90)
+    assert(scheduler.isActionBarCompleted(knight))
+    scheduler.resetActionBar(knight)
+    assert(!scheduler.isActionBarCompleted(knight))
+
+  test("increaseAllActionBars should increase action bar for each unit, isActionBarCompleted should check if unit bar is completed"):
+    scheduler.addUnit(knight)
+    assert(!scheduler.isActionBarCompleted(knight))
+    scheduler.increaseAllActionBars(20)
+    assert(!scheduler.isActionBarCompleted(knight))
+    scheduler.increaseAllActionBars(71)
+    assert(scheduler.isActionBarCompleted(knight))
+
+  test("readyInOrder should return the units sorted by its surplus"):
+    scheduler.addUnit(knight)
+    scheduler.addUnit(globin)
+    scheduler.increaseAllActionBars(100)
+    val sortedList = scheduler.readyInOrder()
+    assertEquals(sortedList(0),globin)
+    assertEquals(sortedList(1),knight)
 
