@@ -1,8 +1,8 @@
-package actions
-import munit.FunSuite
-import map.Panel
+package cl.uchile.dcc
+import map._
+import actions._
 
-class ActionAndPanelTest extends FunSuite:
+class ActionAndPanelTest extends munit.FunSuite:
 
   test("Actions should have correct names") {
     assertEquals(Attack().name, "Attack")

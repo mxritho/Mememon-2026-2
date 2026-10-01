@@ -1,3 +1,4 @@
+package cl.uchile.dcc
 package map
 
 class Panel(val x: Int, val y: Int):

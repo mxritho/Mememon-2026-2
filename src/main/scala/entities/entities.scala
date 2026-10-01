@@ -1,3 +1,4 @@
+package cl.uchile.dcc
 package entities
 import items.{Weapon, Potion}
 

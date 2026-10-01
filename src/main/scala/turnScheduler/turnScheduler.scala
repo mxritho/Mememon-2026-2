@@ -1,12 +1,20 @@
-package turnScheduler
+package cl.uchile.dcc
 import entities.Units
 
-class turnScheduler:
-  private var actionBars: Map[Units, Double] = Map()
+class TurnScheduler:
+  private var unitProgress: Map[Units, Double] = Map()
+
   def addUnit(unit: Units): Unit =
-    if (!actionBars.contains(unit)) {
-      actionBars += (unit -> 0.0) }
+    if (!unitProgress.contains(unit)) {
+      unitProgress += (unit -> 0.0) }
 
   def removeUnit(unit: Units) : Unit =
-    actionBars -= unit
+    unitProgress -= unit
+
+  def calculateMaxActionBar(): Map[Units, Double] =
+    unitProgress.keys.map(Units => Units -> Units.actionBar).toMap
+
+
+
+
 

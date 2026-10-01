@@ -1,3 +1,4 @@
+package cl.uchile.dcc
 package actions
 import items.Weapon
 import items.Potion
