@@ -1,8 +1,6 @@
-package cl.uchile.dcc
-package model.entities
+package cl.uchile.dcc.model.items
+import cl.uchile.dcc.model.entities.*
 
-import model.entities.*
-import model.items.*
 
 class EntitiesTest extends munit.FunSuite:
   test("A Character should initialize correctly with their base attributes"):

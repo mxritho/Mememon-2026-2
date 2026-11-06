@@ -2,7 +2,7 @@ package cl.uchile.dcc
 package model.turnScheduler
 
 import model.entities.{Enemy, Knight}
-import turnScheduler.TurnScheduler
+import cl.uchile.dcc.turnScheduler.TurnScheduler
 
 class TurnSchedulerTest extends munit.FunSuite:
   var scheduler: TurnScheduler = null
