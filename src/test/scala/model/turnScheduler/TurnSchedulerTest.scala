@@ -1,5 +1,8 @@
 package cl.uchile.dcc
-import entities._
+package model.turnScheduler
+
+import model.entities.{Enemy, Knight}
+import turnScheduler.TurnScheduler
 
 class TurnSchedulerTest extends munit.FunSuite:
   var scheduler: TurnScheduler = null

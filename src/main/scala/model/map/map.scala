@@ -1,6 +1,5 @@
-package cl.uchile.dcc
-package map
-import entities.Units
+package cl.uchile.dcc.model.map
+import cl.uchile.dcc.model.entities.Units
 
 /**
  * Represents a single grid tile (panel) on the game map where units can be positioned.

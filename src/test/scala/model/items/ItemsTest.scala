@@ -1,6 +1,8 @@
 package cl.uchile.dcc
-import entities.{Knight,WhiteMage}
-import items._
+package model.items
+
+import model.entities.{Knight, WhiteMage}
+import model.items.*
 
 class ItemsTest extends munit.FunSuite:
   var knight: Knight = null

@@ -1,6 +1,8 @@
 package cl.uchile.dcc
-import map._
-import actions._
+package model.actions
+
+import model.actions.*
+import model.map.Panel
 
 class ActionAndPanelTest extends munit.FunSuite:
 

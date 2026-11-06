@@ -1,5 +1,6 @@
-package cl.uchile.dcc
-import entities.Units
+package cl.uchile.dcc.turnScheduler
+
+import cl.uchile.dcc.model.entities.Units
 
 /**
  * Controller class responsible for managing the turn order of units in combat.
