@@ -9,4 +9,3 @@ class Thief(name: String, hp: Int, defense: Int, weight: Int) extends Character(
     if (!weapon.isSword && !weapon.isDagger) {
       throw new RequerimentNotMeetException(s"$name is a Thief and can only equip swords or daggers")
     }
-    

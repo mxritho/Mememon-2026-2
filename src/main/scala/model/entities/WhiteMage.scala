@@ -10,5 +10,3 @@ class WhiteMage(name: String, hp: Int, defense: Int, weight: Int, manaPoints: In
       throw new RequerimentNotMeetException(s"$name is a White Mage and can only equip bows, wands, or staffs")
     }
   }
-
-  

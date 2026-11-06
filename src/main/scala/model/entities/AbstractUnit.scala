@@ -3,12 +3,18 @@ import cl.uchile.dcc.model.actions.{ActionTrait, Attack, Meteor, Source, Target,
 import cl.uchile.dcc.model.exceptions.{InvalidTargetException, RequerimentNotMeetException}
 import cl.uchile.dcc.model.map.Panel
 
+/**
+ * Base abstract class for all units, providing common combat mechanics.
+ */
 abstract class AbstractUnit(val name: String, protected var _hp: Int, val weight: Int) extends Units with Source with Target:
+
+  /** @return The current health points of the unit. */
   def hp: Int = _hp
 
+  /** @return The attack damage of the unit. */
   def getAttackDamage: Int
 
-  def receiveDamage(damage: Int): Unit = {
+  override def receiveDamage(damage: Int): Unit = {
     val actualDamage = math.max(0, damage - defense)
     _hp -= actualDamage
     if (_hp < 0) _hp = 0
@@ -43,4 +49,3 @@ abstract class AbstractUnit(val name: String, protected var _hp: Int, val weight
 
   override def receiveMeteor(action: Meteor, source: Source): Unit =
     if (this.hp <= 0) throw new InvalidTargetException(s"The unit $name is defeated and cannot receive Meteor")
-

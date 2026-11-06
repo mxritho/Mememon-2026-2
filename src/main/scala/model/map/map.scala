@@ -19,19 +19,21 @@ class Panel(val x: Int, val y: Int) extends Target:
   /** @return A list of all panels directly adjacent to this one. */
   def adjacentPanels: List[Panel] = _adjacentPanels
 
+  /** Adds a unit to this panel if it is not already present. */
   def addUnit(unit: Units): Unit =
     if (!_units.contains(unit)) _units = _units :+ unit
 
+  /** Removes a unit from this panel. */
   def removeUnit(unit: Units): Unit =
     _units = _units.filterNot(_ == unit)
 
+  /** Links another panel as adjacent to this one. */
   def addAdjacentPanel(panel: Panel): Unit =
     if (!_adjacentPanels.contains(panel)) _adjacentPanels = _adjacentPanels :+ panel
 
   override def receiveMove(action: Move, source: Source): Unit =
     if (!action.currentPanel.adjacentPanels.contains(this))
       throw new InvalidMovementException(s"Cannot move to panel ($x, $y) because it is not adjacent")
-
     source.executeMove(this, action.currentPanel)
 
   override def receiveHealing(action: Healing, source: Source): Unit = {

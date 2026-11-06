@@ -10,7 +10,6 @@ import cl.uchile.dcc.model.entities.Character
  */
 abstract class Weapon(name: String, val attackPoints: Int, val weight: Int, val owner: Character) extends AbstractItem(name):
   def isMagical: Boolean = false
-
   def isSword: Boolean = false
   def isDagger: Boolean = false
   def isBow: Boolean = false

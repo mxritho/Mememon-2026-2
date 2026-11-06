@@ -18,9 +18,9 @@ trait Units extends Target with Source:
 
   /**
    * Calculates the maximum action bar capacity for this unit's turn.
-   *
    * @return The maximum action bar value as a Double.
    */
   def actionBar: Double
 
+  /** @return The list of available actions for this unit. */
   def availableActions: List[ActionTrait] = List()
