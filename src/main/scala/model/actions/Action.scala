@@ -5,4 +5,5 @@ package cl.uchile.dcc.model.actions
  *
  * @param name The name of the action.
  */
-abstract class Action(val name: String) extends ActionTrait
+abstract class Action(val name: String) extends ActionTrait:
+  override def doAction(source: Source, target: Target): Unit
