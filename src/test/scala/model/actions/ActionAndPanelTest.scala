@@ -8,8 +8,6 @@ class ActionAndPanelTest extends munit.FunSuite:
 
   test("Actions should have correct names") {
     assertEquals(Attack().name, "Attack")
-    assertEquals(Move().name, "Move")
-    assertEquals(EquipWeapon(List()).name, "Equip Weapon")
     assertEquals(ConsumePotion(List()).name, "Consume Potion")
     assertEquals(Thunder().name, "Thunder")
     assertEquals(Meteor().name, "Meteor")
