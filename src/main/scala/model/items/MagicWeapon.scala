@@ -11,4 +11,6 @@ import cl.uchile.dcc.model.entities.Character
  * @param manaPower The magic damage or power added to spells when equipped.
  */
 abstract class MagicWeapon(name: String, attackPoints: Int, weight: Int, owner: Character, val manaPower: Int) extends
-  Weapon(name, attackPoints, weight, owner)
+  Weapon(name, attackPoints, weight, owner):
+  override def isMagical: Boolean = true
+

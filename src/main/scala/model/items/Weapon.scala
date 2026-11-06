@@ -8,4 +8,11 @@ import cl.uchile.dcc.model.entities.Character
  * @param weight The weight of the weapon, which affects the character's turn speed.
  * @param owner The character who currently owns this weapon.
  */
-abstract class Weapon(name: String, val attackPoints: Int, val weight: Int, val owner: Character) extends AbstractItem(name)
+abstract class Weapon(name: String, val attackPoints: Int, val weight: Int, val owner: Character) extends AbstractItem(name):
+  def isMagical: Boolean = false
+
+  def isSword: Boolean = false
+  def isDagger: Boolean = false
+  def isBow: Boolean = false
+  def isWand: Boolean = false
+  def isStaff: Boolean = false

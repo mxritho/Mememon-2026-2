@@ -6,6 +6,6 @@ import cl.uchile.dcc.model.items.{Weapon}
  *
  * @param usables The list of weapons available to be equipped.
  */
-class EquipWeapon(val usables: List[Weapon]) extends Action("Equip Weapon"):
+class EquipWeapon(val usables: List[Weapon], val weaponToEquip: Weapon) extends Action("Equip Weapon"):
   override def doAction(source: Source, target: Target): Unit =
     target.receiveEquipWeapon(this, source)
