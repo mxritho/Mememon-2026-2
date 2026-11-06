@@ -1,5 +1,7 @@
 package cl.uchile.dcc.model.entities
 
+import cl.uchile.dcc.model.actions.Source
+import cl.uchile.dcc.model.actions.ActionTrait
 /**
  * Represents an enemy unit in the game.
  *
@@ -17,3 +19,8 @@ class Enemy(name: String, _hp: Int, val attack: Int, val defense: Int, weight: I
    * @return The action bar value as a Double.
    */
   override def actionBar: Double = weight.toDouble
+
+  override def getAttackDamage: Int = this.attack
+
+  def receiveAction(action: ActionTrait, source: Source): Unit =
+    action.doAction(source, this)

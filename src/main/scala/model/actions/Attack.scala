@@ -4,6 +4,6 @@ package model.actions
 /** Action that allows a unit to physically attack an enemy target. */
 class Attack extends Action("Attack"):
   override def doAction(source: Source, target: Target): Unit =
-    target.receiveAction(this, source)
+    target.receiveAttack(this, source)
 
 

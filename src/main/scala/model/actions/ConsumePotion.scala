@@ -6,4 +6,6 @@ import cl.uchile.dcc.model.items.{Potion}
  *
  * @param usables The list of potions available to be consumed.
  */
-class ConsumePotion(val usables: List[Potion]) extends Action("Consume Potion")
+class ConsumePotion(val usables: List[Potion]) extends Action("Consume Potion"):
+  override def doAction(source: Source, target: Target): Unit =
+    target.receiveConsumePotion(this, source)

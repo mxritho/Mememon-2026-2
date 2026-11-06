@@ -1,11 +1,41 @@
-package cl.uchile.dcc
-package controller
+package cl.uchile.dcc.controller
 
-/**
-  * Controlador principal del juego.
-  * En esta clase debes implementar la lógica que conecta las distintas
-  * entidades de tu modelo, maneja los turnos, y ejecuta las acciones.
-  */
+import cl.uchile.dcc.model.entities.Units
+import cl.uchile.dcc.model.actions.{ActionTrait, Target}
+import cl.uchile.dcc.turnScheduler.TurnScheduler
+
 class GameController {
+  private val turnScheduler = new TurnScheduler()
 
+  def addUnitToGame(unit: Units): Unit = {
+    turnScheduler.addUnit(unit)
+  }
+
+  def getCurrentUnit: Option[Units] = {
+    turnScheduler.getTurn()
+  }
+
+  def decideNextTurn(): Option[Units] = {
+    while (getCurrentUnit.isEmpty) {
+      turnScheduler.increaseAllActionBars(1.0)
+    }
+    getCurrentUnit
+  }
+
+  def getAvailableActions(unit: Units): List[ActionTrait] = {
+    unit.availableActions
+  }
+
+  def executeAction(action: ActionTrait, target: Target): Unit = {
+    val current = getCurrentUnit
+    if (current.isDefined) {
+      val sourceUnit = current.get
+      sourceUnit.executeAction(action, target)
+      turnScheduler.resetActionBar(sourceUnit)
+    }
+  }
+
+  def resetGameState(): Unit = {
+    turnScheduler.calculateMaxActionBar().keys.foreach {unit => turnScheduler.resetActionBar(unit)}
+  }
 }

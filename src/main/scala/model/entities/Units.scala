@@ -1,10 +1,10 @@
 package cl.uchile.dcc.model.entities
-
+import cl.uchile.dcc.model.actions.{ActionTrait, Target, Source}
 /**
  * Base trait for all combat units in the game.
  * Defines the common attributes and methods required for the turn system.
  */
-trait Units:
+trait Units extends Target with Source:
   /** The name of the unit. */
   val name: String
   /** The base weight of the unit, used to calculate turn speed. */
@@ -22,3 +22,5 @@ trait Units:
    * @return The maximum action bar value as a Double.
    */
   def actionBar: Double
+
+  def availableActions: List[ActionTrait] = List()

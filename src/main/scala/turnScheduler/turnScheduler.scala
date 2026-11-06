@@ -1,5 +1,4 @@
 package cl.uchile.dcc.turnScheduler
-
 import cl.uchile.dcc.model.entities.Units
 
 /**

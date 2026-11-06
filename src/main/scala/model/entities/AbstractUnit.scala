@@ -1,5 +1,5 @@
 package cl.uchile.dcc.model.entities
-import cl.uchile.dcc.model.actions.{Source, Target, ActionTrait}
+import cl.uchile.dcc.model.actions.{ActionTrait, Attack, Source, Target}
 
 abstract class AbstractUnit(val name: String, protected var _hp: Int, val weight: Int) extends Units with Source with Target:
   def hp: Int = _hp
@@ -15,10 +15,10 @@ abstract class AbstractUnit(val name: String, protected var _hp: Int, val weight
   override def executeAction(action: ActionTrait, target: Target): Unit =
     action.doAction(this, target)
 
-  override def receiveAttack(action: ActionTrait, source: Source): Unit =
+  override def receiveAttack(action: Attack, source: Source): Unit =
     source.applyAttackTo(this)
 
   override def applyAttackTo(target: Target): Unit =
     target.receiveDamage(this.getAttackDamage)
-    
+
 

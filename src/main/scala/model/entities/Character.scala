@@ -1,6 +1,8 @@
 package cl.uchile.dcc.model.entities
 
-import cl.uchile.dcc.model.items.{Weapon, Potion}
+import cl.uchile.dcc.model.actions.ActionTrait
+import cl.uchile.dcc.model.items.{Potion, Weapon}
+import cl.uchile.dcc.model.actions.Source
 
 /**
  * Represents a playable character in the game.
@@ -28,3 +30,9 @@ abstract class Character(name: String, _hp: Int, private var _defense: Int, weig
   def equipWeapon(weapon: Weapon): Unit = {
     _weaponSlot = Some(weapon)
   }
+
+  override def getAttackDamage: Int =
+    if (weaponSlot.isDefined) weaponSlot.get.attackPoints else 0
+
+  def receiveAction(action: ActionTrait, source: Source): Unit =
+    action.doAction(source, this)
